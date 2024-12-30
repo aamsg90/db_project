@@ -3,10 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Users API</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    
-    <script src="app.js"></script>
+    <h1>Users API</h1>
+
+    <h2>View All Users</h2>
+    <button onclick="fetchUsers()">Fetch Users</button>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Get User By ID</h2>
+    <input type="number" id="userId" placeholder="Enter User ID">
+    <button onclick="fetchUserById()">Get User</button>
+    <div id="userDetails"></div>
+
+    <h2>Add a New User</h2>
+    <form id="addUserForm">
+        <input type="number" id="newUserId" placeholder="ID" required>
+        <input type="text" id="newUserName" placeholder="Name" required>
+        <input type="text" id="newUserLogin" placeholder="Login" required>
+        <input type="text" id="newUserPassword" placeholder="Password" required>
+        <input type="number" id="newUserBalance" placeholder="Balance" required>
+        <button type="button" onclick="addUser()">Add User</button>
+    </form>
+
+
+    <script src="./scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Users API</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1>Login</h1>
+
+    <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Login" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <div id="loginMessage"></div>
+
+   
+</body>
+
+<script>
+    const apiBaseUrl = "http://localhost:3300";
+
+// Login functionality
+function login() {
+    const login = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+
+    fetch(`${apiBaseUrl}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ login, password })
+    })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("loginMessage").textContent = "Login successful!";
+                document.getElementById("loginMessage").style.color = "green";
+                // Optionally redirect to another page
+                // window.location.href = "/dashboard.html";
+            } else if (response.status === 401) {
+                document.getElementById("loginMessage").textContent = "Invalid username or password.";
+            } else {
+                document.getElementById("loginMessage").textContent = "An error occurred during login.";
+            }
+        })
+        .catch(err => {
+            console.error("Error during login:", err);
+            document.getElementById("loginMessage").textContent = "An error occurred during login.";
+        });
+}
+
+</script>
+</html>
